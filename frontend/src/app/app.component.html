@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/microsoft.png" width="30" height="30" alt="MSFT">
+      Cognitive Explorer
+    </a>
+    <ul class="nav nav-pills mr-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="ca" routerLinkActive="active">Certificate Authorities</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="users" routerLinkActive="active">Users</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-3">
+  <router-outlet></router-outlet>
+</div>

@@ -1,3 +1,4 @@
+import { User } from 'common';
 import { mkdir, mkdirp, pathExists, readdir, readFile, unlink, writeFile } from 'fs-extra';
 import rimraf from 'rimraf';
 
@@ -5,10 +6,6 @@ import { ConflictError } from '../conflict-error';
 import { NotFoundError } from '../not-found-error';
 import { exec } from './exec';
 import { throwIfEmpty } from './throw';
-
-export interface User {
-  id: string;
-}
 
 export class UserDb {
 

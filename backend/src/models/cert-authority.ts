@@ -1,3 +1,4 @@
+import { CertAuthority, Issued } from 'common';
 import { mkdir, mkdirp, pathExists, readdir, readFile, writeFile } from 'fs-extra';
 import rimraf from 'rimraf';
 
@@ -5,15 +6,6 @@ import { ConflictError } from '../conflict-error';
 import { NotFoundError } from '../not-found-error';
 import { exec } from './exec';
 import { throwIfEmpty } from './throw';
-
-export interface CertAuthority {
-  id: string;
-}
-
-export interface Issued {
-  user: string;
-  fingerprint: string;
-}
 
 export class CertAuthorityDb {
   async list() {

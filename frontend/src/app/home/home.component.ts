@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.backend.me().subscribe();
+
+    this.backend.certificateAuthorities().subscribe();
   }
 
 }

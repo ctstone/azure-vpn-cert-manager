@@ -20,6 +20,7 @@
     "@types/rimraf": "^2.0.2",
     "adal-node": "^0.1.28",
     "body-parser": "^1.19.0",
+    "common": "file:../packages/common",
     "connect-mongo": "^3.0.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
