@@ -16,6 +16,12 @@ export class UserDb {
     return await readdir('data/users');
   }
 
+  async exists(id: string) {
+    throwIfEmpty(id, 'id');
+    await this.init();
+    return await pathExists(`data/users/${id}`);
+  }
+
   async get(id: string) {
     throwIfEmpty(id, 'id');
     await this.init();

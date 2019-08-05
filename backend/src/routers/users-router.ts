@@ -25,7 +25,7 @@ export const USERS_ROUTER = Router()
     const token = getAzureAdToken(res, ResourceId.graph);
     const { userId, familyName, givenName, isUserIdDisplayable, oid, tenantId } = token;
     tryPromise(next, async () => {
-      if (!await DB.get(userId)) {
+      if (!await DB.exists(userId)) {
         await DB.create({ id: userId });
       }
       const roles = await DB.roles(userId);
@@ -177,4 +177,4 @@ export const USERS_ROUTER = Router()
             });
           }),
         )),
-      ));
+    ));
