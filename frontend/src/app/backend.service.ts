@@ -21,6 +21,10 @@ export class BackendService {
     return this.http.get<string[]>('/api/users');
   }
 
+  addUser(id: string, roles?: string[]) {
+    return this.http.put(`/api/users/${id}`, roles);
+  }
+
   certificateAuthoritiesForUser(userId: string) {
     return this.http.get<string[]>(`/api/users/${userId}/ca`);
   }

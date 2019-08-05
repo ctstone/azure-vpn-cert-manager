@@ -46,15 +46,18 @@ export class CertAuthorityDb {
     });
   }
 
-  async create(ca: CertAuthority) {
+  async create(ca: CertAuthority, roles: string[]) {
     throwIfEmpty(ca, 'CertAuthority');
     throwIfEmpty(ca.id, 'ca.id');
+    throwIfEmpty(roles, 'roles');
+    throwIfEmpty(roles.length, 'roles[]');
     await this.init();
     try {
       await mkdir(`data/ca/${ca.id}`);
       await mkdir(`data/ca/${ca.id}/certs`);
       const key = await exec('ipsec pki --gen --outform pem');
       await writeFile(`data/ca/${ca.id}/key.pem`, key);
+      await writeFile(`data/ca/${ca.id}/roles.json`, JSON.stringify(roles));
     } catch (err) {
       if (err.code === 'EEXIST') {
         throw new ConflictError('CA exists');
@@ -62,6 +65,12 @@ export class CertAuthorityDb {
         throw err;
       }
     }
+  }
+
+  async roles(id: string) {
+    throwIfEmpty(id, 'id');
+    await this.init();
+    return JSON.parse(await readFile(`data/ca/${id}/roles.json`, 'utf8'));
   }
 
   async certs(id: string) {

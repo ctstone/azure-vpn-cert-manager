@@ -23,10 +23,11 @@ export const CA_ROUTER = Router()
   .use('/:ca', Router({ mergeParams: true })
 
     // create a ca
-    .put('/', CA_ADMIN, (req, res, next) => {
+    .put('/', CA_ADMIN, JSON_PARSER, (req, res, next) => {
       const { ca } = req.params;
+      const { roles } = req.body;
       tryPromise(next, async () => {
-        await DB.create({ id: ca });
+        await DB.create({ id: ca }, roles);
         res.status(201).end();
       });
     })
@@ -37,6 +38,16 @@ export const CA_ROUTER = Router()
       tryPromise(next, async () => {
         await DB.get(ca);
         next();
+      });
+    })
+
+    // user can access CA?
+    .use((req, res, next) => {
+      const { ca } = req.params;
+      tryPromise(next, async () => {
+        const roles = await DB.roles(ca);
+        const hasUserRole = userRole(roles);
+        hasUserRole(req, res, next);
       });
     })
 

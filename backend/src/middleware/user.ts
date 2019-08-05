@@ -6,7 +6,8 @@ import { getAzureAdToken, ResourceId } from './authorization/azure-ad';
 
 const DB = new UserDb();
 
-export function userRole(role: string): Handler {
+export function userRole(...allowedRoles: string[]): Handler {
+  const allowedRolesSet = new Set(allowedRoles);
   return (req, res, next) => {
     const token = getAzureAdToken(res, ResourceId.graph);
 
@@ -14,8 +15,8 @@ export function userRole(role: string): Handler {
       const userExists = await DB.get(token.userId);
 
       if (userExists) {
-        const roles = await DB.roles(token.userId);
-        if (roles.includes(role)) {
+        const userRoles = await DB.roles(token.userId);
+        if (userRoles.some((x) => allowedRolesSet.has(x))) {
           return next();
         }
       }

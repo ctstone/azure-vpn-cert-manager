@@ -38,10 +38,16 @@ export const USERS_ROUTER = Router()
   .use('/:user', Router({ mergeParams: true })
 
     // create a user
-    .put('/', USER_ADMIN, (req, res, next) => {
+    .put('/', USER_ADMIN, JSON_PARSER, (req, res, next) => {
       const { user } = req.params;
+      const { roles } = req.body;
       tryPromise(next, async () => {
         await DB.create({ id: user });
+        if (roles && Array.isArray(roles)) {
+          for (const role of roles) {
+            await DB.addRole(user, role);
+          }
+        }
         res.status(201).end();
       });
     })

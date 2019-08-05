@@ -1,4 +1,7 @@
 <ul class="list-group">
+  <li class="list-group-item">
+    <a routerLink="add" class="btn btn-sm btn-success">Add User</a>
+  </li>
   <li class="list-group-item" *ngFor="let user of users">
     <a [routerLink]="user">{{user}}</a>
   </li>

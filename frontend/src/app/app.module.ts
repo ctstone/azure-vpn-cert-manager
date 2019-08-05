@@ -4,19 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { httpInterceptorProviders } from './http';
-import { UsersComponent } from './users/users.component';
+import { UserListComponent } from './user-list/user-list.component';
 import { CaComponent } from './ca/ca.component';
 import { UserComponent } from './user/user.component';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UsersComponent,
+    UserListComponent,
     CaComponent,
-    UserComponent
+    UserComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,

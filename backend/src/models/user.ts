@@ -7,6 +7,8 @@ import { NotFoundError } from '../not-found-error';
 import { exec } from './exec';
 import { throwIfEmpty } from './throw';
 
+export const ROLES = ['user-admin', 'ca-admin'];
+
 export class UserDb {
 
   async list() {

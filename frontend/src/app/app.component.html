@@ -2,7 +2,7 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/">
       <img src="assets/microsoft.png" width="30" height="30" alt="MSFT">
-      Cognitive Explorer
+      Cert Manager
     </a>
     <ul class="nav nav-pills mr-auto">
       <li class="nav-item">
@@ -12,6 +12,7 @@
         <a class="nav-link text-white" routerLink="users" routerLinkActive="active">Users</a>
       </li>
     </ul>
+    <span class="navbar-text" *ngIf="user.current">{{user.current.givenName}} {{user.current.familyName}}</span>
   </div>
 </nav>
 

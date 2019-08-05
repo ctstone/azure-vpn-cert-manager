@@ -5,10 +5,10 @@ import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'cert-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
   users: string[];
 
